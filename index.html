@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Generator</title>
+    <link rel="stylesheet" href="styles.css"> <!-- CSS link -->
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <svg class="sun-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="moon-icon hidden" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </button>
+                
+                <h1>Startup Generator</h1>
+                <p class="subtitle">Generate your next big idea with AI-powered names, logos, and websites</p>
+            </div>
+        </header>
+
+        <div class="form-section">
+            <form id="startupForm">
+                <div class="form-group">
+                    <label for="industry">Industry/Niche</label>
+                    <input type="text" id="industry" placeholder="e.g., FinTech, E-commerce, SaaS, HealthTech" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Brief Description (Optional)</label>
+                    <textarea id="description" placeholder="Describe your startup idea, target audience, or key features..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn" onclick="generateNames()">
+                        <span class="btn-text">🚀 Generate Names</span>
+                        <span class="loading hidden">
+                            <div class="spinner"></div>
+                            Generating...
+                        </span>
+                    </button>
+                    
+                    <button type="button" class="btn" onclick="generateLogos()">
+                        <span class="btn-text">🎨 Generate Logos</span>
+                        <span class="loading hidden">
+                            <div class="spinner"></div>
+                            Creating...
+                        </span>
+                    </button>
+                    
+                    <button type="button" class="btn btn-secondary" onclick="generateWebsite()">
+                        <span class="btn-text">🌐 Build Website</span>
+                        <span class="loading hidden">
+                            <div class="spinner"></div>
+                            Building...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Name Results -->
+        <div id="nameResults" class="results-section hidden">
+            <h2 class="section-title">Generated Startup Names</h2>
+            <div id="nameGrid" class="results-grid"></div>
+        </div>
+
+        <!-- Logo Results -->
+        <div id="logoResults" class="results-section hidden">
+            <h2 class="section-title">Generated Logos</h2>
+            <div id="logoGrid" class="logo-container"></div>
+        </div>
+
+        <!-- Website Preview -->
+        <div id="websiteResults" class="results-section hidden">
+            <h2 class="section-title">Website Preview</h2>
+            <div class="template-preview">
+                <iframe id="websitePreview" src=""></iframe>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn" onclick="downloadWebsite()">
+                    📦 Download Website
+                </button>
+            </div>
+        </div>
+    </div>
+<script type="module">
+  import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+  window.GoogleGenerativeAI = GoogleGenerativeAI;
+</script>
+
+    <script src="script.js"></script> <!-- JS link -->
+</body>
+</html>
